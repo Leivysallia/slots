@@ -6,3 +6,4 @@ Files Required:
 	 slots.sh ##	mainfile
 	 vars.bashrc ## variable file
 	 functions.bashrc ## functions file
+	 
