@@ -17,14 +17,32 @@ fi
 
 revar () {
 
-coin=100
+equal=0
+fourplus=0
 fours=0
+fullbet=0
+ones=0
+payout=0
+temp=0
 threes=0
 twos=0
-ones=0
+wins=0
 zer0s=0
+zeroones=0
 zeros=0
-payout=0
+zerothrees=0
+zerotwos=0
+zerozeros=0
+
+unset base[@]
+unset bonus[@]
+unset ldiag[@]
+unset one[@]
+unset orig[@]
+unset rdiag[@]
+unset two[@]
+unset type[@]
+unset zero[@]
 
 }
 
@@ -170,7 +188,7 @@ bonus () {
 zeros=0
 level=("$@")
 
-echo "${level[@]}"
+##  echo "${level[@]}"
 
 for iter in "${level[@]}"
 do
@@ -261,6 +279,7 @@ then
 read -n1 -r -p "SKIP[0]:PLAY[1] " bonusplay
 echo $''
 read -n1 -r -p "EVEN[0]:ODD[1] " isbonus
+echo $''
 
 until [[ "$isbonus" =~ $rebonus ]]
 do
@@ -287,7 +306,9 @@ payout () {
 
 coin=$(( coin - fullbet ))
 payout=$(( ( bet * ( wins ) ) ))
-echo "$payout"
+
+echo "PAYOUT: $coinsign$payout"
+
 if [[ $payout -gt 0 ]]
 then
 bonusround
@@ -306,3 +327,9 @@ render
 
 }
 
+spacer () {
+
+echo "---------------------------"
+echo $''
+
+}
