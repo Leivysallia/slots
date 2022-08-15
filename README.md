@@ -1,7 +1,7 @@
-# slots
+# Slots for Bash
 
 A slots game for bash.
-Run using ./ within the desired folder.
+Run using ./slots.sh within the desired folder.
 Files Required:
 	 slots.sh ##	mainfile
 	 vars.bashrc ## variable file
