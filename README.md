@@ -6,7 +6,7 @@ Run using ./slots.sh within the desired folder.
 
 Files Required:
 
-	 slots.sh			##	mainfile
+	 slots.sh		##	mainfile
 
 	 vars.bashrc		##	variable file
 
