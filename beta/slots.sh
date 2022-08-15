@@ -4,12 +4,12 @@ shopt -s nullglob globstar
 
 clear
 
-coin=100
-
 source functions.bashrc
 source vars.bashrc
 
-fif reel
+revar
+
+fif seed
 
 while [[ $coin -gt 0 ]]
 do
@@ -87,7 +87,7 @@ bonus ${bonus[@]}
 
 payout
 
-source vars.bashrc
+revar
 
 done
 

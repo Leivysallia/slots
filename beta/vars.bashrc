@@ -2,9 +2,20 @@
 set -a
 
 RANDOM=$( date +%N )
+SEED=$RANDOM
+##	echo "$SEED" > seed.bash
 
 rebet='^[1-8]$'
 remulti='^[1-8]$'
+rebonus='^[0-1]$'
+
+fourplus=0
+zerothrees=0
+zerotwos=0
+zeroones=0
+zerozeros=0
+
+
 
 temp=$RANDOM
 equal=$RANDOM
@@ -31,3 +42,5 @@ unset two[@]
 
 unset ldiag[@]
 unset rdiag[@]
+
+unset bonus[@]

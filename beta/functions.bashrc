@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -a
 
 fif () {
@@ -13,6 +12,19 @@ if [[ -f $1.bash ]]
 then
 mv -fv $1.bash bkup/$1.bkup
 fi
+
+}
+
+revar () {
+
+coin=100
+fours=0
+threes=0
+twos=0
+ones=0
+zer0s=0
+zeros=0
+payout=0
 
 }
 
@@ -74,46 +86,24 @@ linkstart () {
 ##sever=$(( (multi * 3) + 3 ))
 sever=9
 
+base[0]=$(( $RANDOM % 10 ))
+base[1]=$(( $RANDOM % 10 ))
+base[2]=$(( $RANDOM % 10 ))
 
-base[0]=$( shuf -r -i 0-$sever -n1 )
-base[1]=$( shuf -r -i 0-$sever -n1 )
-base[2]=$( shuf -r -i 0-$sever -n1 )
+type[0]=$(( $RANDOM % 10 ))
+type[1]=$(( $RANDOM % 10 ))
+type[2]=$(( $RANDOM % 10 ))
 
-type[0]=$( shuf -r -i 0-$sever -n1 )
-type[1]=$( shuf -r -i 0-$sever -n1 )
-type[2]=$( shuf -r -i 0-$sever -n1 )
+orig[0]=$(( $RANDOM % 10 ))
+orig[1]=$(( $RANDOM % 10 ))
+orig[2]=$(( $RANDOM % 10 ))
 
-orig[0]=$( shuf -r -i 0-$sever -n1 )
-orig[1]=$( shuf -r -i 0-$sever -n1 )
-orig[2]=$( shuf -r -i 0-$sever -n1 )
 
 echo ${base[@]}
 echo ${type[@]}
 echo ${orig[@]}
 
 }
-
-debug () {
-
-base[0]=$( shuf -r -i 0-2 -n1 )
-base[1]=$( shuf -r -i 0-2 -n1 )
-base[2]=$( shuf -r -i 0-2 -n1 )
-
-type[0]=$( shuf -r -i 0-2 -n1 )
-type[1]=$( shuf -r -i 0-2 -n1 )
-type[2]=$( shuf -r -i 0-2 -n1 )
-
-orig[0]=$( shuf -r -i 0-2 -n1 )
-orig[1]=$( shuf -r -i 0-2 -n1 )
-orig[2]=$( shuf -r -i 0-2 -n1 )
-
-
-echo ${base[@]} |tee -a reel.bash
-echo ${type[@]} |tee -a reel.bash
-echo ${orig[@]} |tee -a reel.bash
-
-}
-
 
 calc () {
 
@@ -185,7 +175,7 @@ echo "${level[@]}"
 for iter in "${level[@]}"
 do
 
-	echo ""$iter":ITER"
+	## echo ""$iter":ITER"
 
 	if [[ $iter -eq 0 ]]
     then
@@ -194,7 +184,7 @@ do
 
 done
 
-echo $zeros
+##  echo $zeros
 
 }
 
@@ -263,13 +253,52 @@ equal=177013
 
 }
 
+bonusround () {
+
+if [[ $zeros -ge 1 ]]
+then
+
+read -n1 -r -p "SKIP[0]:PLAY[1] " bonusplay
+echo $''
+read -n1 -r -p "EVEN[0]:ODD[1] " isbonus
+
+until [[ "$isbonus" =~ $rebonus ]]
+do
+read -n1 -r -p "EVEN[0]:ODD[1] " isbonus
+echo $''
+done
+
+bonusvar=$(( RANDOM % 2 ))
+
+if [[ $isbonus -eq $bonusvar ]]
+then
+    payout=$(( payout * 2 ))
+else
+    payout=0
+    echo "You Lose..."
+    echo $''
+fi
+
+fi
+
+}
+
 payout () {
 
 coin=$(( coin - fullbet ))
 payout=$(( ( bet * ( wins ) ) ))
+echo "$payout"
+if [[ $payout -gt 0 ]]
+then
+bonusround
+fi
+
 coin=$(( coin + payout ))
 
+if [[ $payout -gt 0 ]]
+then
 echo "You Won $coinsign$payout"
+fi
 
 echo $''
 
